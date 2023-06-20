@@ -1,3 +1,8 @@
+*.code-workspace
+*.egg-info
+
+local_test.sh
+
 .idea
 .vscode
 *.pyc
