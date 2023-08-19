@@ -78,7 +78,7 @@ models = [
 
 try:
     models.append((Prophet(), 9.0))
-except TypeError:
+except (TypeError, ImportError):
     pass
 
 # forecasting models with exogenous variables support
@@ -101,7 +101,7 @@ dual_models = [
 
 try:
     dual_models.append(Prophet())
-except TypeError:
+except (TypeError, ImportError):
     pass
 
 # test only a few models for encoder support reduce time
@@ -118,7 +118,7 @@ if not isinstance(Prophet, NotImportedModule):
 
 try:
     encoder_support_models.append(Prophet())
-except TypeError:
+except (TypeError, ImportError):
     pass
 
 
