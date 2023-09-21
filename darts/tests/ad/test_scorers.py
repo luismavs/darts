@@ -48,7 +48,6 @@ list_NLLScorer = [
 
 
 class TestADAnomalyScorer:
-
     np.random.seed(42)
 
     # univariate series
@@ -173,7 +172,6 @@ class TestADAnomalyScorer:
         )
 
     def test_eval_accuracy_from_prediction(self):
-
         scorer = Norm(component_wise=False)
         # Check return types
         # Check if return type is float when input is a series
@@ -310,7 +308,6 @@ class TestADAnomalyScorer:
             )
 
         for scorer in [non_fittable_scorer, fittable_scorer]:
-
             # name must be of type str
             assert type(scorer.__str__()) == str
 
@@ -394,7 +391,6 @@ class TestADAnomalyScorer:
                 )
 
     def test_NonFittableAnomalyScorer(self):
-
         for scorer in list_NonFittableAnomalyScorer:
             # Check if trainable is False, being a NonFittableAnomalyScorer
             assert not scorer.trainable
@@ -425,9 +421,7 @@ class TestADAnomalyScorer:
                 )
 
     def test_FittableAnomalyScorer(self):
-
         for scorer in list_FittableAnomalyScorer:
-
             # Need to call fit() before calling score()
             with pytest.raises(ValueError):
                 scorer.score(self.test)
@@ -567,7 +561,6 @@ class TestADAnomalyScorer:
                 scorerB2.score_from_prediction(self.test, self.modified_test)
 
     def test_Norm(self):
-
         # component_wise must be bool
         with pytest.raises(ValueError):
             Norm(component_wise=1)
@@ -651,7 +644,6 @@ class TestADAnomalyScorer:
         assert not scorer.is_probabilistic
 
     def test_Difference(self):
-
         scorer = Difference()
 
         # always expects a deterministic input
@@ -697,7 +689,6 @@ class TestADAnomalyScorer:
         assert not scorer.is_probabilistic
 
     def test_WassersteinScorer(self):
-
         # component_wise parameter
         # component_wise must be bool
         with pytest.raises(ValueError):
@@ -795,7 +786,6 @@ class TestADAnomalyScorer:
         assert not scorer.is_probabilistic
 
     def test_univariate_Wasserstein(self):
-
         # univariate example
         np.random.seed(42)
 
@@ -851,7 +841,6 @@ class TestADAnomalyScorer:
         assert abs(auc_pr_w20 - 0.93934) < 1e-05
 
     def test_multivariate_componentwise_Wasserstein(self):
-
         # example multivariate WassersteinScorer component wise (True and False)
         np.random.seed(3)
         np_mts_train_wasserstein = np.abs(
@@ -922,7 +911,6 @@ class TestADAnomalyScorer:
         assert abs(auc_roc_cwtrue[1] - 0.96722) < 1e-05
 
     def test_kmeansScorer(self):
-
         # component_wise parameter
         # component_wise must be bool
         with pytest.raises(ValueError):
@@ -985,7 +973,6 @@ class TestADAnomalyScorer:
         assert not scorer.is_probabilistic
 
     def test_univariate_kmeans(self):
-
         # univariate example
 
         np.random.seed(40)
@@ -1067,7 +1054,6 @@ class TestADAnomalyScorer:
         assert metric_AUC_PR == 1.0
 
     def test_multivariate_window_kmeans(self):
-
         # multivariate example with different windows
 
         np.random.seed(1)
@@ -1143,7 +1129,6 @@ class TestADAnomalyScorer:
         assert abs(auc_pr_w2 - 0.88584) < 1e-05
 
     def test_multivariate_componentwise_kmeans(self):
-
         # example multivariate KMeans component wise (True and False)
         np.random.seed(1)
 
@@ -1220,7 +1205,6 @@ class TestADAnomalyScorer:
             assert abs(auc_roc_cwfalse - 0.99007) < 1e-05
 
     def test_PyODScorer(self):
-
         # model parameter must be pyod.models typy BaseDetector
         with pytest.raises(ValueError):
             PyODScorer(model=MovingAverageFilter(window=10))
@@ -1287,7 +1271,6 @@ class TestADAnomalyScorer:
         assert not scorer.is_probabilistic
 
     def test_univariate_PyODScorer(self):
-
         # univariate test
         np.random.seed(40)
 
@@ -1370,7 +1353,6 @@ class TestADAnomalyScorer:
         assert metric_AUC_PR == 1.0
 
     def test_multivariate_window_PyODScorer(self):
-
         # multivariate example (with different window)
 
         np.random.seed(1)
@@ -1446,7 +1428,6 @@ class TestADAnomalyScorer:
         assert abs(auc_pr_w2 - 0.88584) < 1e-05
 
     def test_multivariate_componentwise_PyODScorer(self):
-
         # multivariate example with component wise (True and False)
 
         np.random.seed(1)
@@ -1523,7 +1504,6 @@ class TestADAnomalyScorer:
         assert abs(auc_roc_cwtrue[1] - 0.98311) < 1e-05
 
     def test_NLLScorer(self):
-
         for s in list_NLLScorer:
             # expects for 'actual_series' a deterministic input and for 'pred_series' a probabilistic input
             with pytest.raises(ValueError):
@@ -1534,7 +1514,6 @@ class TestADAnomalyScorer:
                 )
 
     def test_GaussianNLLScorer(self):
-
         # window parameter
         # window must be int
         with pytest.raises(ValueError):
@@ -1723,7 +1702,6 @@ class TestADAnomalyScorer:
         assert scorer.is_probabilistic
 
     def test_LaplaceNLLScorer(self):
-
         # window parameter
         # window must be int
         with pytest.raises(ValueError):
@@ -1919,7 +1897,6 @@ class TestADAnomalyScorer:
         assert scorer.is_probabilistic
 
     def test_ExponentialNLLScorer(self):
-
         # window parameter
         # window must be int
         with pytest.raises(ValueError):
@@ -2093,7 +2070,6 @@ class TestADAnomalyScorer:
         assert scorer.is_probabilistic
 
     def test_GammaNLLScorer(self):
-
         # window parameter
         # window must be int
         with pytest.raises(ValueError):
@@ -2259,7 +2235,6 @@ class TestADAnomalyScorer:
         assert scorer.is_probabilistic
 
     def test_CauchyNLLScorer(self):
-
         # window parameter
         # window must be int
         with pytest.raises(ValueError):
@@ -2405,7 +2380,6 @@ class TestADAnomalyScorer:
         assert scorer.is_probabilistic
 
     def test_PoissonNLLScorer(self):
-
         # window parameter
         # window must be int
         with pytest.raises(ValueError):

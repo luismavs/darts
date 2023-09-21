@@ -31,7 +31,6 @@ class AnomalyScorer(ABC):
     """Base class for all anomaly scorers"""
 
     def __init__(self, univariate_scorer: bool, window: int) -> None:
-
         raise_if_not(
             type(window) is int,
             f"Parameter `window` must be an integer, found type {type(window)}.",
@@ -527,7 +526,7 @@ class FittableAnomalyScorer(AnomalyScorer):
         _assert_same_length(list_actual_series, list_pred_series)
 
         anomaly_scores = []
-        for (s1, s2) in zip(list_actual_series, list_pred_series):
+        for s1, s2 in zip(list_actual_series, list_pred_series):
             _sanity_check_two_series(s1, s2)
             s1 = self._assert_deterministic(s1, "actual_series")
             s2 = self._assert_deterministic(s2, "pred_series")

@@ -52,7 +52,7 @@ if TORCH_AVAILABLE:
             large_ts = tg.constant_timeseries(length=100, value=1000)
             small_ts = tg.constant_timeseries(length=100, value=10)
 
-            for (model_cls, kwargs) in [
+            for model_cls, kwargs in [
                 (DLinearModel, {"kernel_size": 5}),
                 (DLinearModel, {"kernel_size": 6}),
                 (NLinearModel, {}),
@@ -174,8 +174,13 @@ if TORCH_AVAILABLE:
                 val2,
                 fut_cov1,
                 fut_cov2,
+                past_cov1=None,
+                past_cov2=None,
+                val_past_cov1=None,
+                val_past_cov2=None,
                 cls=DLinearModel,
                 lkl=None,
+                **kwargs
             ):
                 model = cls(
                     input_chunk_length=50,
@@ -189,6 +194,12 @@ if TORCH_AVAILABLE:
 
                 model.fit(
                     [train1, train2],
+                    past_covariates=[past_cov1, past_cov2]
+                    if past_cov1 is not None
+                    else None,
+                    val_past_covariates=[val_past_cov1, val_past_cov2]
+                    if val_past_cov1 is not None
+                    else None,
                     future_covariates=[fut_cov1, fut_cov2]
                     if fut_cov1 is not None
                     else None,
@@ -199,6 +210,9 @@ if TORCH_AVAILABLE:
                     series=[train1, train2],
                     future_covariates=[fut_cov1, fut_cov2]
                     if fut_cov1 is not None
+                    else None,
+                    past_covariates=[fut_cov1, fut_cov2]
+                    if past_cov1 is not None
                     else None,
                     n=len(val1),
                     num_samples=500 if lkl is not None else 1,
@@ -211,11 +225,14 @@ if TORCH_AVAILABLE:
 
             train1, val1 = series1.split_after(0.7)
             train2, val2 = series2.split_after(0.7)
+            past_cov1 = train1.copy()
+            past_cov2 = train2.copy()
+            val_past_cov1 = val1.copy()
+            val_past_cov2 = val2.copy()
 
             for model, lkl in product(
                 [DLinearModel, NLinearModel], [None, GaussianLikelihood()]
             ):
-
                 e1, e2 = _eval_model(
                     train1, train2, val1, val2, fut_cov1, fut_cov2, cls=model, lkl=lkl
                 )
@@ -254,6 +271,21 @@ if TORCH_AVAILABLE:
                 assert e1 <= 0.40
                 assert e2 <= 0.34
 
+            e1, e2 = _eval_model(
+                train1,
+                train2,
+                val1,
+                val2,
+                fut_cov1,
+                fut_cov2,
+                past_cov1=past_cov1,
+                past_cov2=past_cov2,
+                val_past_cov1=val_past_cov1,
+                val_past_cov2=val_past_cov2,
+                cls=NLinearModel,
+                lkl=None,
+                normalize=True,
+            )
             # can only fit models with past/future covariates when shared_weights=False
             for model in [DLinearModel, NLinearModel]:
                 for shared_weights in [True, False]:

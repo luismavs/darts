@@ -215,7 +215,7 @@ class TestGetFeatureTimes:
         target = linear_timeseries(start=1, length=20, freq=1)
         past = linear_timeseries(start=2, length=25, freq=2)
         future = linear_timeseries(start=3, length=30, freq=3)
-        for (lags, lags_past, lags_future, ocl) in product(
+        for lags, lags_past, lags_future, ocl in product(
             self.target_lag_combos,
             self.lags_past_combos,
             self.lags_future_combos,
@@ -252,7 +252,7 @@ class TestGetFeatureTimes:
         target = linear_timeseries(start=pd.Timestamp("1/1/2000"), length=20, freq="1d")
         past = linear_timeseries(start=pd.Timestamp("1/2/2000"), length=25, freq="2d")
         future = linear_timeseries(start=pd.Timestamp("1/3/2000"), length=30, freq="3d")
-        for (lags, lags_past, lags_future, ocl) in product(
+        for lags, lags_past, lags_future, ocl in product(
             self.target_lag_combos,
             self.lags_past_combos,
             self.lags_future_combos,
@@ -289,7 +289,7 @@ class TestGetFeatureTimes:
         target = linear_timeseries(start=1, length=20, freq=1)
         past = linear_timeseries(start=2, length=25, freq=2)
         future = linear_timeseries(start=3, length=30, freq=3)
-        for (lags, lags_past, lags_future) in product(
+        for lags, lags_past, lags_future in product(
             self.target_lag_combos, self.lags_past_combos, self.lags_future_combos
         ):
             feature_times = _get_feature_times(
@@ -322,7 +322,7 @@ class TestGetFeatureTimes:
         target = linear_timeseries(start=pd.Timestamp("1/1/2000"), length=20, freq="1d")
         past = linear_timeseries(start=pd.Timestamp("1/2/2000"), length=25, freq="2d")
         future = linear_timeseries(start=pd.Timestamp("1/3/2000"), length=30, freq="3d")
-        for (lags, lags_past, lags_future) in product(
+        for lags, lags_past, lags_future in product(
             self.target_lag_combos, self.lags_past_combos, self.lags_future_combos
         ):
             feature_times = _get_feature_times(
@@ -1055,7 +1055,7 @@ class TestGetFeatureTimes:
         with pytest.raises(ValueError) as err:
             _get_feature_times(target_series=series, lags=[0], is_training=False)
         assert (
-            "`lags` must be a `Sequence` containing only `int` values less than 0."
+            "`lags` must be a `Sequence` or `Dict` containing only `int` values less than 0."
         ) == str(err.value)
         # `lags_past_covariates` not <= -1:
         with pytest.raises(ValueError) as err:
@@ -1063,7 +1063,7 @@ class TestGetFeatureTimes:
                 past_covariates=series, lags_past_covariates=[0], is_training=False
             )
         assert (
-            "`lags_past_covariates` must be a `Sequence` containing only `int` values less than 0."
+            "`lags_past_covariates` must be a `Sequence` or `Dict` containing only `int` values less than 0."
         ) == str(err.value)
         # `lags_future_covariates` can be positive, negative, and/or zero - no error should be thrown:
         _get_feature_times(

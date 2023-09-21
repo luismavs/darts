@@ -26,7 +26,6 @@ class GammaNLLScorer(NLLScorer):
         deterministic_values: np.ndarray,
         probabilistic_estimations: np.ndarray,
     ) -> np.ndarray:
-
         params = np.apply_along_axis(gamma.fit, axis=1, arr=probabilistic_estimations)
         return -gamma.logpdf(
             deterministic_values, a=params[:, 0], loc=params[:, 1], scale=params[:, 2]

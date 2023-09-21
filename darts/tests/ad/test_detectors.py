@@ -13,7 +13,6 @@ list_FittableDetector = [QuantileDetector(low_quantile=0.2)]
 
 
 class TestADDetectors:
-
     np.random.seed(42)
 
     # univariate series
@@ -42,7 +41,6 @@ class TestADDetectors:
     probabilistic = TimeSeries.from_values(np_probabilistic)
 
     def test_DetectNonFittableDetector(self):
-
         detector = ThresholdDetector(low_threshold=0.2)
 
         # Check return types
@@ -86,7 +84,6 @@ class TestADDetectors:
             detector.detect(self.probabilistic)
 
     def test_eval_accuracy(self):
-
         detector = ThresholdDetector(low_threshold=0.2)
 
         # Check return types
@@ -111,9 +108,7 @@ class TestADDetectors:
             detector.eval_accuracy(self.anomalies, self.probabilistic)
 
     def test_FittableDetector(self):
-
         for detector in list_FittableDetector:
-
             # Need to call fit() before calling detect()
             with pytest.raises(ValueError):
                 detector.detect(self.test)
@@ -152,7 +147,6 @@ class TestADDetectors:
                 detector2.detect(self.train)
 
     def test_QuantileDetector(self):
-
         # Need to have at least one parameter (low, high) not None
         with pytest.raises(ValueError):
             QuantileDetector()
@@ -518,7 +512,6 @@ class TestADDetectors:
         assert abs(f1[1] - 0.13793) < 1e-05
 
     def test_ThresholdDetector(self):
-
         # Parameters
         # Need to have at least one parameter (low, high) not None
         with pytest.raises(ValueError):
@@ -783,7 +776,6 @@ class TestADDetectors:
         assert abs(f1[1] - 0.18867) < 1e-05
 
     def test_fit_detect(self):
-
         detector1 = QuantileDetector(low_quantile=0.05, high_quantile=0.95)
         detector1.fit(self.train)
         prediction1 = detector1.detect(self.train)

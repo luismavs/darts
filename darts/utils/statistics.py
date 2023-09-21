@@ -180,7 +180,6 @@ def extract_trend_and_seasonality(
     )
 
     if method == "naive":
-
         decomp = seasonal_decompose(
             ts.pd_series(), period=freq, model=model.value, extrapolate_trend="freq"
         )
@@ -377,7 +376,6 @@ def stationarity_tests(
     p_value_threshold_adfuller: float = 0.05,
     p_value_threshold_kpss: float = 0.05,
 ) -> bool:
-
     """
     Double test on stationarity using both Kwiatkowski-Phillips-Schmidt-Shin and Augmented
     Dickey-Fuller statistical tests.

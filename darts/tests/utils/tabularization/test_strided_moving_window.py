@@ -28,7 +28,7 @@ class TestStridedMovingWindow:
         # Create a 'dummy input' with linearly increasing values:
         x_shape = (10, 8, 12)
         x = np.arange(np.prod(x_shape)).reshape(*x_shape)
-        for (axis, stride, window_len) in product(
+        for axis, stride, window_len in product(
             axis_combos, stride_combos, window_len_combos
         ):
             windows = strided_moving_window(x, window_len, stride, axis)

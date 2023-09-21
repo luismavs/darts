@@ -114,7 +114,6 @@ class Scaler(FittableDataTransformer, InvertibleDataTransformer):
     def ts_transform(
         series: TimeSeries, params: Mapping[str, Any], **kwargs
     ) -> TimeSeries:
-
         transformer = params["fitted"]
 
         tr_out = transformer.transform(Scaler.stack_samples(series))

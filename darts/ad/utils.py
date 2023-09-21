@@ -131,7 +131,6 @@ def eval_accuracy_from_scores(
     for idx, (s_anomalies, s_score) in enumerate(
         zip(list_actual_anomalies, list_anomaly_scores)
     ):
-
         _assert_binary(s_anomalies, "actual_anomalies")
 
         sol.append(
@@ -238,7 +237,6 @@ def eval_accuracy_from_binary_prediction(
     for idx, (s_anomalies, s_pred) in enumerate(
         zip(list_actual_anomalies, list_binary_pred_anomalies)
     ):
-
         _assert_binary(s_pred, "pred_anomalies")
         _assert_binary(s_anomalies, "actual_anomalies")
 
@@ -304,7 +302,6 @@ def _eval_accuracy_from_data(
     s_data, s_anomalies = _intersect(s_data, s_anomalies)
 
     if metric_name == "AUC_ROC" or metric_name == "AUC_PR":
-
         nr_anomalies_per_component = (
             s_anomalies.sum(axis=0).values(copy=False).flatten()
         )
@@ -578,7 +575,6 @@ def show_anomalies_from_scores(
         )
 
     if anomaly_scores is not None:
-
         if isinstance(anomaly_scores, Sequence):
             for idx, s in enumerate(anomaly_scores):
                 raise_if_not(
@@ -593,7 +589,6 @@ def show_anomalies_from_scores(
             anomaly_scores = [anomaly_scores]
 
         if names_of_scorers is not None:
-
             if isinstance(names_of_scorers, str):
                 names_of_scorers = [names_of_scorers]
             elif isinstance(names_of_scorers, Sequence):
@@ -675,7 +670,6 @@ def show_anomalies_from_scores(
     _plot_series(series=series, ax_id=axs[index_ax][0], linewidth=0.5, label_name="")
 
     if model_output is not None:
-
         _plot_series(
             series=model_output,
             ax_id=axs[index_ax][0],
@@ -691,18 +685,15 @@ def show_anomalies_from_scores(
     axs[index_ax][0].legend(loc="upper center", bbox_to_anchor=(0.5, 1.1), ncol=2)
 
     if anomaly_scores is not None:
-
         dict_input = {}
 
         for idx, (score, w) in enumerate(zip(anomaly_scores, window)):
-
             dict_input[idx] = {"series_score": score, "window": w, "name_id": idx}
 
         current_window = window[0]
         index_ax = index_ax + 1
 
         for elem in sorted(dict_input.items(), key=lambda x: x[1]["window"]):
-
             idx = elem[1]["name_id"]
             w = elem[1]["window"]
 
@@ -743,7 +734,6 @@ def show_anomalies_from_scores(
             axs[index_ax][0].set_xlabel("")
 
     if actual_anomalies is not None:
-
         _plot_series(
             series=actual_anomalies,
             ax_id=axs[index_ax + 1][0],

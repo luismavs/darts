@@ -11,7 +11,6 @@ logger = get_logger(__name__)
 
 
 class TestResiduals:
-
     np.random.seed(42)
 
     def test_forecasting_residuals_nocov_output(self):

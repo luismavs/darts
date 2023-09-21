@@ -58,6 +58,23 @@ class Theta(LocalForecastingModel):
         References
         ----------
         .. [1] `Unmasking the Theta method <https://robjhyndman.com/papers/Theta.pdf`
+
+        Examples
+        --------
+        >>> from darts.datasets import AirPassengersDataset
+        >>> from darts.models import Theta
+        >>> series = AirPassengersDataset().load()
+        >>> # using the canonical Theta method
+        >>> model = Theta(theta=2)
+        >>> model.fit(series)
+        >>> pred = model.predict(6)
+        >>> pred.values()
+        array([[442.7256909 ],
+               [433.74381763],
+               [494.54534585],
+               [480.36937856],
+               [481.06675142],
+               [545.80068173]])
         """
 
         super().__init__()
@@ -156,7 +173,6 @@ class Theta(LocalForecastingModel):
 
         # Re-apply the seasonal trend of the TimeSeries
         if self.is_seasonal:
-
             replicated_seasonality = np.tile(
                 self.seasonality.pd_series()[-self.season_period :],
                 math.ceil(n / self.season_period),
@@ -250,6 +266,22 @@ class FourTheta(LocalForecastingModel):
         -----
         Even though this model is an improvement of :class:`Theta`, it is a naive
         implementation of the algorithm, which can potentially be slower.
+
+        Examples
+        --------
+        >>> from darts.datasets import AirPassengersDataset
+        >>> from darts.models import FourTheta
+        >>> series = AirPassengersDataset().load()
+        >>> model = FourTheta(theta=2)
+        >>> model.fit(series)
+        >>> pred = model.predict(6)
+        >>> pred.values()
+        array([[443.3949283 ],
+               [434.39769555],
+               [495.28886231],
+               [481.08962991],
+               [481.78610361],
+               [546.61463773]])
         """
 
         super().__init__()
@@ -399,7 +431,6 @@ class FourTheta(LocalForecastingModel):
 
         # Re-apply the seasonal trend of the TimeSeries
         if self.is_seasonal:
-
             replicated_seasonality = np.tile(
                 self.seasonality.pd_series()[-self.season_period :],
                 math.ceil(n / self.season_period),

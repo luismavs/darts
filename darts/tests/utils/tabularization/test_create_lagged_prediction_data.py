@@ -356,7 +356,7 @@ class TestCreateLaggedPredictionData:
             n_components=4, start_value=20, end_value=30, start=6, end=26, freq=3
         )
         # Conduct test for each input parameter combo:
-        for (lags, lags_past, lags_future, max_samples_per_ts) in product(
+        for lags, lags_past, lags_future, max_samples_per_ts in product(
             self.target_lag_combos,
             self.past_lag_combos,
             self.future_lag_combos,
@@ -444,7 +444,7 @@ class TestCreateLaggedPredictionData:
             freq="2d",
         )
         # Conduct test for each input parameter combo:
-        for (lags, lags_past, lags_future, max_samples_per_ts) in product(
+        for lags, lags_past, lags_future, max_samples_per_ts in product(
             self.target_lag_combos,
             self.past_lag_combos,
             self.future_lag_combos,
@@ -517,7 +517,7 @@ class TestCreateLaggedPredictionData:
             n_components=4, start_value=20, end_value=30, start=6, end=26, freq=3
         )
         # Conduct test for each input parameter combo:
-        for (lags, lags_past, lags_future, max_samples_per_ts) in product(
+        for lags, lags_past, lags_future, max_samples_per_ts in product(
             self.target_lag_combos,
             self.past_lag_combos,
             self.future_lag_combos,
@@ -590,7 +590,7 @@ class TestCreateLaggedPredictionData:
             n_components=4, start_value=20, end_value=30, start=6, end=26, freq=3
         )
         # Conduct test for each input parameter combo:
-        for (lags, lags_past, lags_future, max_samples_per_ts) in product(
+        for lags, lags_past, lags_future, max_samples_per_ts in product(
             self.target_lag_combos,
             self.past_lag_combos,
             self.future_lag_combos,
@@ -678,7 +678,7 @@ class TestCreateLaggedPredictionData:
             freq="2d",
         )
         # Conduct test for each input parameter combo:
-        for (lags, lags_past, lags_future, max_samples_per_ts) in product(
+        for lags, lags_past, lags_future, max_samples_per_ts in product(
             self.target_lag_combos,
             self.past_lag_combos,
             self.future_lag_combos,
@@ -758,7 +758,7 @@ class TestCreateLaggedPredictionData:
             freq="2d",
         )
         # Conduct test for each input parameter combo:
-        for (lags, lags_past, lags_future, max_samples_per_ts) in product(
+        for lags, lags_past, lags_future, max_samples_per_ts in product(
             self.target_lag_combos,
             self.past_lag_combos,
             self.future_lag_combos,
@@ -1396,7 +1396,7 @@ class TestCreateLaggedPredictionData:
                     use_moving_windows=use_moving_windows,
                 )
             assert (
-                "`lags` must be a `Sequence` containing only `int` values less than 0."
+                "`lags` must be a `Sequence` or `Dict` containing only `int` values less than 0."
             ) == str(err.value)
             # Test invalid `lags_past_covariates` values:
             with pytest.raises(ValueError) as err:
@@ -1407,7 +1407,7 @@ class TestCreateLaggedPredictionData:
                     use_moving_windows=use_moving_windows,
                 )
             assert (
-                "`lags_past_covariates` must be a `Sequence` containing only `int` values less than 0."
+                "`lags_past_covariates` must be a `Sequence` or `Dict` containing only `int` values less than 0."
             ) == str(err.value)
             # This should *not* throw an error:
             create_lagged_prediction_data(

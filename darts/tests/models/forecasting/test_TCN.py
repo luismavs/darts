@@ -88,7 +88,6 @@ if TORCH_AVAILABLE:
                     if dilation_base > kernel_size:
                         continue
                     for input_chunk_length in input_chunk_lengths:
-
                         # create model with all weights set to one
                         model = TCNModel(
                             input_chunk_length=input_chunk_length,

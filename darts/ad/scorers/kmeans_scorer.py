@@ -125,7 +125,6 @@ class KMeansScorer(FittableAnomalyScorer):
         self,
         list_series: Sequence[TimeSeries],
     ):
-
         list_np_series = [series.all_values(copy=False) for series in list_series]
 
         if not self.component_wise:

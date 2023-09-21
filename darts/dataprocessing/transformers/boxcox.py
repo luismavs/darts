@@ -164,7 +164,6 @@ class BoxCox(FittableDataTransformer, InvertibleDataTransformer):
     def ts_transform(
         series: TimeSeries, params: Mapping[str, Any], **kwargs
     ) -> TimeSeries:
-
         lmbda = params["fitted"]
 
         vals = BoxCox.stack_samples(series)
@@ -178,7 +177,6 @@ class BoxCox(FittableDataTransformer, InvertibleDataTransformer):
     def ts_inverse_transform(
         series: TimeSeries, params: Mapping[str, Any], **kwargs
     ) -> TimeSeries:
-
         lmbda = params["fitted"]
 
         vals = BoxCox.stack_samples(series)

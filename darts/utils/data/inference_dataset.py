@@ -500,7 +500,6 @@ class MixedCovariatesInferenceDataset(InferenceDataset):
         Optional[np.ndarray],
         TimeSeries,
     ]:
-
         (
             past_target,
             past_covariate,
@@ -591,7 +590,6 @@ class SplitCovariatesInferenceDataset(InferenceDataset):
         Optional[np.ndarray],
         TimeSeries,
     ]:
-
         (
             past_target,
             past_covariate,
