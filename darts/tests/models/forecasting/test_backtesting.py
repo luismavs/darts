@@ -53,7 +53,6 @@ def get_dummy_series(
 
 
 def compare_best_against_random(model_class, params, series, stride=1):
-
     # instantiate best model in expanding window mode
     np.random.seed(1)
     best_model_1, _, _ = model_class.gridsearch(
@@ -601,7 +600,6 @@ class TestBacktesting:
         ]
 
         for test in test_cases:
-
             model = test["model"]
             parameters = test["parameters"]
 

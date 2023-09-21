@@ -52,7 +52,7 @@ if TORCH_AVAILABLE:
             large_ts = tg.constant_timeseries(length=100, value=1000)
             small_ts = tg.constant_timeseries(length=100, value=10)
 
-            for (model_cls, kwargs) in [
+            for model_cls, kwargs in [
                 (DLinearModel, {"kernel_size": 5}),
                 (DLinearModel, {"kernel_size": 6}),
                 (NLinearModel, {}),
@@ -233,7 +233,6 @@ if TORCH_AVAILABLE:
             for model, lkl in product(
                 [DLinearModel, NLinearModel], [None, GaussianLikelihood()]
             ):
-
                 e1, e2 = _eval_model(
                     train1, train2, val1, val2, fut_cov1, fut_cov2, cls=model, lkl=lkl
                 )

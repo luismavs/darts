@@ -60,7 +60,6 @@ class _TFTModule(PLMixedCovariatesModule):
         norm_type: Union[str, nn.Module],
         **kwargs,
     ):
-
         """PyTorch module implementing the TFT architecture from `this paper <https://arxiv.org/pdf/1912.09363.pdf>`_
         The implementation is built upon `pytorch-forecasting's TemporalFusionTransformer
         <https://pytorch-forecasting.readthedocs.io/en/latest/models.html>`_.
@@ -1147,7 +1146,6 @@ class TFTModel(MixedCovariatesTorchModel):
         future_covariates: Optional[Sequence[TimeSeries]],
         max_samples_per_ts: Optional[int],
     ) -> MixedCovariatesSequentialDataset:
-
         raise_if(
             future_covariates is None and not self.add_relative_index,
             "TFTModel requires future covariates. The model applies multi-head attention queries on future "

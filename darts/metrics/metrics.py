@@ -737,7 +737,6 @@ def mase(
         intersect: bool,
         reduction: Callable[[np.ndarray], float],
     ):
-
         raise_if_not(
             actual_series.width == pred_series.width,
             "The two TimeSeries instances must have the same width.",
@@ -811,7 +810,6 @@ def mase(
     elif isinstance(actual_series, Sequence) and isinstance(
         actual_series[0], TimeSeries
     ):
-
         raise_if_not(
             isinstance(pred_series, Sequence)
             and isinstance(pred_series[0], TimeSeries),
@@ -1134,7 +1132,6 @@ def rho_risk(
     n_jobs: int = 1,
     verbose: bool = False
 ) -> float:
-
     """:math:`\\rho`-risk (rho-risk or quantile risk).
 
     Given a time series of actual values :math:`y_t` of length :math:`T` and a time series of stochastic predictions

@@ -26,7 +26,6 @@ class ExponentialSmoothing(LocalForecastingModel):
         random_state: int = 0,
         **fit_kwargs,
     ):
-
         """Exponential Smoothing
 
         This is a wrapper around

@@ -116,7 +116,6 @@ class PyODScorer(FittableAnomalyScorer):
         return "PyODScorer (model {})".format(self.model.__str__().split("(")[0])
 
     def _fit_core(self, list_series: Sequence[TimeSeries]):
-
         list_np_series = [series.all_values(copy=False) for series in list_series]
 
         # TODO: can we factorize code in common bteween PyODScorer and KMeansScorer?
@@ -135,7 +134,6 @@ class PyODScorer(FittableAnomalyScorer):
         else:
             models = []
             for component_idx in range(self.width_trained_on):
-
                 model_width = self.model
                 model_width.fit(
                     np.concatenate(
@@ -153,7 +151,6 @@ class PyODScorer(FittableAnomalyScorer):
             self.models = models
 
     def _score_core(self, series: TimeSeries) -> TimeSeries:
-
         raise_if_not(
             self.width_trained_on == series.width,
             "Input must have the same number of components as the data used for training"
@@ -166,7 +163,6 @@ class PyODScorer(FittableAnomalyScorer):
         np_anomaly_score = []
 
         if not self.component_wise:
-
             np_anomaly_score.append(
                 self.model.decision_function(
                     sliding_window_view(np_series, window_shape=self.window, axis=0)
@@ -175,7 +171,6 @@ class PyODScorer(FittableAnomalyScorer):
                 )
             )
         else:
-
             for component_idx in range(self.width_trained_on):
                 score = self.models[component_idx].decision_function(
                     sliding_window_view(

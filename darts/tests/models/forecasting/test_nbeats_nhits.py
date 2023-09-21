@@ -123,7 +123,6 @@ if TORCH_AVAILABLE:
         def test_nhits_sampling_sizes(self):
             # providing bad sizes or shapes should fail
             with pytest.raises(ValueError):
-
                 # wrong number of coeffs for stacks and blocks
                 NHiTSModel(
                     input_chunk_length=1,

@@ -17,7 +17,6 @@ from darts.utils.timeseries_generation import (
 
 
 class TestTimeSeries:
-
     times = pd.date_range("20130101", "20130110", freq="D")
     pd_series1 = pd.Series(range(10), index=times)
     pd_series2 = pd.Series(range(5, 15), index=times)
@@ -1038,7 +1037,6 @@ class TestTimeSeries:
 
             series_target = TimeSeries.from_dataframe(df_full, time_col="date")
             for df, df_name in zip([df_full, df_holes], ["full", "holes"]):
-
                 # fill_missing_dates will find multiple inferred frequencies (i.e. for 'B' it finds {'B', 'D'})
                 if offset_alias in offset_aliases_raise:
                     with pytest.raises(ValueError):
@@ -1507,7 +1505,6 @@ class TestTimeSeries:
 
 
 class TestTimeSeriesConcatenate:
-
     #
     # COMPONENT AXIS TESTS
     #
@@ -1723,7 +1720,6 @@ class TestTimeSeriesConcatenate:
 
 
 class TestTimeSeriesHierarchy:
-
     components = ["total", "a", "b", "x", "y", "ax", "ay", "bx", "by"]
 
     hierarchy = {
@@ -1900,7 +1896,6 @@ class TestTimeSeriesHierarchy:
 
 
 class TestTimeSeriesHeadTail:
-
     ts = TimeSeries(
         xr.DataArray(
             np.random.rand(10, 10, 10),
@@ -2173,7 +2168,6 @@ class TestTimeSeriesFromDataFrame:
 
 
 class TestSimpleStatistics:
-
     times = pd.date_range("20130101", "20130110", freq="D")
     values = np.random.rand(10, 2, 100)
     ar = xr.DataArray(

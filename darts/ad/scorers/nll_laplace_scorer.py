@@ -26,7 +26,6 @@ class LaplaceNLLScorer(NLLScorer):
         deterministic_values: np.ndarray,
         probabilistic_estimations: np.ndarray,
     ) -> np.ndarray:
-
         # ML estimate for the Laplace loc
         loc = np.median(probabilistic_estimations, axis=1)
 

@@ -18,7 +18,6 @@ from darts.logging import raise_if_not
 
 class EnsembleSklearnAggregator(FittableAggregator):
     def __init__(self, model) -> None:
-
         raise_if_not(
             isinstance(model, BaseEnsemble),
             f"Scorer is expecting a model of type BaseEnsemble (from sklearn ensemble), \
@@ -38,7 +37,6 @@ class EnsembleSklearnAggregator(FittableAggregator):
         actual_anomalies: Sequence[TimeSeries],
         series: Sequence[TimeSeries],
     ):
-
         X = np.concatenate(
             [s.all_values(copy=False).reshape(len(s), -1) for s in series],
             axis=0,
@@ -53,7 +51,6 @@ class EnsembleSklearnAggregator(FittableAggregator):
         return self
 
     def _predict_core(self, series: Sequence[TimeSeries]) -> Sequence[TimeSeries]:
-
         return [
             TimeSeries.from_times_and_values(
                 s.time_index,

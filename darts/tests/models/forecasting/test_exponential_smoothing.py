@@ -13,7 +13,6 @@ class TestExponentialSmoothing:
         assert model.seasonal_periods == expected_seasonal_periods
 
     def test_seasonality_inference(self):
-
         # test `seasonal_periods` inference for datetime indices
         freq_str_seasonality_periods_tuples = [
             ("D", 7),

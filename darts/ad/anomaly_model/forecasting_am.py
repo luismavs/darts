@@ -190,7 +190,6 @@ class ForecastingAnomalyModel(AnomalyModel):
 
             list_pred = []
             for idx, series in enumerate(list_series):
-
                 if list_past_covariates is not None:
                     past_covariates = list_past_covariates[idx]
 
@@ -436,7 +435,6 @@ class ForecastingAnomalyModel(AnomalyModel):
 
         list_pred = []
         for idx, s in enumerate(list_series):
-
             if list_past_covariates is not None:
                 past_covariates = list_past_covariates[idx]
 
@@ -515,7 +513,6 @@ class ForecastingAnomalyModel(AnomalyModel):
         start: Union[pd.Timestamp, float, int] = None,
         num_samples: int = 1,
     ) -> TimeSeries:
-
         """Compute the historical forecasts that would have been obtained by this model on the `series`.
 
         `retrain` is set to False if possible (this is not supported by all models). If set to True, it will always

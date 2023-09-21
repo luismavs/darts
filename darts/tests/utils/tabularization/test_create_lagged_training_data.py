@@ -1213,7 +1213,7 @@ class TestCreateLaggedTrainingData:
         expected_y = np.ones((1, 1, 1))
         # Test correctness for 'moving window' and for 'time intersection' methods, as well
         # as for different `multi_models` values:
-        for (use_moving_windows, multi_models) in product([False, True], [False, True]):
+        for use_moving_windows, multi_models in product([False, True], [False, True]):
             X, y, times, _ = create_lagged_training_data(
                 target,
                 output_chunk_length,
@@ -1245,7 +1245,7 @@ class TestCreateLaggedTrainingData:
         expected_y = np.ones((1, 1, 1))
         # Test correctness for 'moving window' and for 'time intersection' methods, as well
         # as for different `multi_models` values:
-        for (use_moving_windows, multi_models) in product([False, True], [False, True]):
+        for use_moving_windows, multi_models in product([False, True], [False, True]):
             X, y, times, _ = create_lagged_training_data(
                 target,
                 output_chunk_length,
@@ -1282,7 +1282,7 @@ class TestCreateLaggedTrainingData:
         expected_y = np.ones((1, 1, 1))
         # Check correctness for 'moving windows' and 'time intersection' methods, as
         # well as for different `multi_models` values:
-        for (use_moving_windows, multi_models) in product([False, True], [False, True]):
+        for use_moving_windows, multi_models in product([False, True], [False, True]):
             X, y, times, _ = create_lagged_training_data(
                 target,
                 output_chunk_length=1,
@@ -1322,7 +1322,7 @@ class TestCreateLaggedTrainingData:
         expected_y = np.ones((1, 1, 1))
         # Check correctness for 'moving windows' and 'time intersection' methods, as
         # well as for different `multi_models` values:
-        for (use_moving_windows, multi_models) in product([False, True], [False, True]):
+        for use_moving_windows, multi_models in product([False, True], [False, True]):
             X, y, times, _ = create_lagged_training_data(
                 target,
                 output_chunk_length=1,
@@ -1360,7 +1360,7 @@ class TestCreateLaggedTrainingData:
         expected_y = np.ones((1, 1, 1))
         # Check correctness for 'moving windows' and 'time intersection' methods, as
         # well as for different `multi_models` values:
-        for (use_moving_windows, multi_models) in product([False, True], [False, True]):
+        for use_moving_windows, multi_models in product([False, True], [False, True]):
             X, y, times, _ = create_lagged_training_data(
                 target,
                 output_chunk_length=1,
@@ -1400,7 +1400,7 @@ class TestCreateLaggedTrainingData:
         expected_y = np.ones((1, 1, 1))
         # Check correctness for 'moving windows' and 'time intersection' methods, as
         # well as for different `multi_models` values:
-        for (use_moving_windows, multi_models) in product([False, True], [False, True]):
+        for use_moving_windows, multi_models in product([False, True], [False, True]):
             X, y, times, _ = create_lagged_training_data(
                 target,
                 output_chunk_length=1,

@@ -118,7 +118,6 @@ class QuantileDetector(FittableDetector):
         )
 
     def _fit_core(self, list_series: Sequence[TimeSeries]) -> None:
-
         # if len(low) > 1 and len(high) > 1, then check it matches input width:
         raise_if(
             len(self.low_quantile) > 1

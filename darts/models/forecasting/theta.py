@@ -173,7 +173,6 @@ class Theta(LocalForecastingModel):
 
         # Re-apply the seasonal trend of the TimeSeries
         if self.is_seasonal:
-
             replicated_seasonality = np.tile(
                 self.seasonality.pd_series()[-self.season_period :],
                 math.ceil(n / self.season_period),
@@ -432,7 +431,6 @@ class FourTheta(LocalForecastingModel):
 
         # Re-apply the seasonal trend of the TimeSeries
         if self.is_seasonal:
-
             replicated_seasonality = np.tile(
                 self.seasonality.pd_series()[-self.season_period :],
                 math.ceil(n / self.season_period),

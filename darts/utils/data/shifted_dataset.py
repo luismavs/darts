@@ -366,7 +366,6 @@ class MixedCovariatesShiftedDataset(MixedCovariatesTrainingDataset):
         Optional[np.ndarray],
         np.ndarray,
     ]:
-
         past_target, past_covariate, static_covariate, future_target = self.ds_past[idx]
         _, historic_future_covariate, future_covariate, _, _ = self.ds_dual[idx]
         return (

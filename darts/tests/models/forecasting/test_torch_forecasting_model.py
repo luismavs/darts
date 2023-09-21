@@ -1143,7 +1143,6 @@ if TORCH_AVAILABLE:
             assert len(loaded_model.model.train_metrics) == 1
 
         def test_optimizers(self):
-
             optimizers = [
                 (torch.optim.Adam, {"lr": 0.001}),
                 (torch.optim.SGD, {"lr": 0.001}),
@@ -1163,7 +1162,6 @@ if TORCH_AVAILABLE:
                 model.fit(self.series, epochs=1)
 
         def test_lr_schedulers(self):
-
             lr_schedulers = [
                 (torch.optim.lr_scheduler.StepLR, {"step_size": 10}),
                 (

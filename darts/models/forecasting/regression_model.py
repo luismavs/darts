@@ -75,10 +75,12 @@ except ModuleNotFoundError:
             """dummy"""
             pass
 
+
 LAGS_TYPE = Union[int, List[int], Dict[str, Union[int, List[int]]]]
 FUTURE_LAGS_TYPE = Union[
     Tuple[int, int], List[int], Dict[str, Union[Tuple[int, int], List[int]]]
 ]
+
 
 class RegressionModel(GlobalForecastingModel):
     def __init__(

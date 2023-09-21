@@ -203,7 +203,6 @@ class Prophet(FutureCovariatesLocalForecastingModel):
                 self._floor = 0
 
     def _fit(self, series: TimeSeries, future_covariates: Optional[TimeSeries] = None):
-
         super()._fit(series, future_covariates)
         self._assert_univariate(series)
         series = self.training_series
@@ -263,7 +262,6 @@ class Prophet(FutureCovariatesLocalForecastingModel):
         num_samples: int = 1,
         verbose: bool = False,
     ) -> TimeSeries:
-
         _ = self._check_seasonality_conditions(future_covariates=future_covariates)
 
         super()._predict(n, future_covariates, num_samples)

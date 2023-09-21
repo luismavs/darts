@@ -19,7 +19,6 @@ class AnomalyModel(ABC):
     """Base class for all anomaly models."""
 
     def __init__(self, model, scorer):
-
         self.scorers = _to_list(scorer)
 
         raise_if_not(

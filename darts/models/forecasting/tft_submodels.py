@@ -55,7 +55,6 @@ class _TimeDistributedEmbeddingBag(nn.EmbeddingBag):
         self.batch_first = batch_first
 
     def forward(self, x):
-
         if len(x.size()) <= 2:
             return super().forward(x)
 
@@ -151,7 +150,6 @@ class _TimeDistributedInterpolation(nn.Module):
         return upsampled
 
     def forward(self, x):
-
         if len(x.size()) <= 2:
             return self.interpolate(x)
 

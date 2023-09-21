@@ -78,10 +78,8 @@ def dummy_timeseries(
     freq="D",
     integer_index=False,
 ):
-
     targets, pcovs, fcovs = [], [], []
     for series_idx in range(n_series):
-
         target_start_date = (
             series_idx * multiseries_offset
             if integer_index
@@ -161,7 +159,6 @@ def partialclass(cls, *args, **kwargs):
 
 
 class TestRegressionModels:
-
     np.random.seed(42)
 
     # default regression models
@@ -1282,7 +1279,6 @@ class TestRegressionModels:
             assert isinstance(model.model, MultiOutputRegressor)
 
     def test_multioutput_validation(self):
-
         lags = 4
 
         models = [

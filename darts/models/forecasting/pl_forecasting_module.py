@@ -259,7 +259,6 @@ class PLForecastingModule(pl.LightningModule, ABC):
         # repeat prediction procedure for every needed sample
         batch_predictions = []
         while sample_count < self.pred_num_samples:
-
             # make sure we don't produce too many samples
             if sample_count + batch_sample_size > self.pred_num_samples:
                 batch_sample_size = self.pred_num_samples - sample_count

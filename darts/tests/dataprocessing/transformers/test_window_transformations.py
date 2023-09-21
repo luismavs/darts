@@ -10,7 +10,6 @@ from darts.dataprocessing.transformers import Mapper, WindowTransformer
 
 
 class TestTimeSeriesWindowTransform:
-
     times = pd.date_range("20130101", "20130110")
     series_from_values = TimeSeries.from_values(
         np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
@@ -323,7 +322,6 @@ class TestTimeSeriesWindowTransform:
             self.target.window_transform(window_transformations, treat_na="bfill")
 
     def test_tranformed_ts_index(self):
-
         # DateTimeIndex
         transformed_series = self.target.window_transform({"function": "sum"})
         assert (
@@ -464,7 +462,6 @@ class TestTimeSeriesWindowTransform:
 
 
 class TestWindowTransformer:
-
     times = pd.date_range("20130101", "20130110")
     target = TimeSeries.from_times_and_values(times, np.array(range(1, 11)))
     times_hourly = pd.date_range(start="20130101", freq="1H", periods=10)

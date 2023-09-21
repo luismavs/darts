@@ -33,7 +33,6 @@ class _RNNModule(PLDualCovariatesModule):
         dropout: float = 0.0,
         **kwargs,
     ):
-
         """PyTorch module implementing an RNN to be used in `RNNModel`.
 
         PyTorch module implementing a simple RNN with the specified `name` type.
@@ -175,7 +174,6 @@ class _RNNModule(PLDualCovariatesModule):
         prediction_length = 1
 
         while prediction_length < n:
-
             # create new input to model from last prediction and current covariates, if available
             new_input = (
                 torch.cat(
@@ -215,7 +213,6 @@ class RNNModel(DualCovariatesTorchModel):
         training_length: int = 24,
         **kwargs,
     ):
-
         """Recurrent Neural Network Model (RNNs).
 
         This class provides three variants of RNNs:
@@ -496,7 +493,6 @@ class RNNModel(DualCovariatesTorchModel):
         future_covariates: Optional[Sequence[TimeSeries]],
         max_samples_per_ts: Optional[int],
     ) -> DualCovariatesShiftedDataset:
-
         return DualCovariatesShiftedDataset(
             target_series=target,
             covariates=future_covariates,

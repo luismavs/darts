@@ -80,7 +80,6 @@ class TestADAnomalyModel:
     )
 
     def test_Scorer(self):
-
         list_NonFittableAnomalyScorer = [
             NormScorer(),
             Difference(),
@@ -99,7 +98,6 @@ class TestADAnomalyModel:
                     model=MovingAverageFilter(window=20), scorer=scorers
                 ),
             ]:
-
                 # scorer are trainable
                 assert not anomaly_model.scorers_are_trainable
 
@@ -116,12 +114,10 @@ class TestADAnomalyModel:
                     model=MovingAverageFilter(window=20), scorer=scorers
                 ),
             ]:
-
                 # scorer are not trainable
                 assert anomaly_model.scorers_are_trainable
 
     def test_Score(self):
-
         am1 = ForecastingAnomalyModel(
             model=RegressionModel(lags=10), scorer=NormScorer()
         )
@@ -149,7 +145,6 @@ class TestADAnomalyModel:
             )
 
     def test_FitFilteringAnomalyModelInput(self):
-
         for anomaly_model in [
             FilteringAnomalyModel(
                 model=MovingAverageFilter(window=20), scorer=NormScorer()
@@ -162,7 +157,6 @@ class TestADAnomalyModel:
                 model=MovingAverageFilter(window=20), scorer=KMeansScorer()
             ),
         ]:
-
             # filter must be fittable if allow_filter_training is set to True
             with pytest.raises(ValueError):
                 anomaly_model.fit(self.train, allow_model_training=True)
@@ -184,7 +178,6 @@ class TestADAnomalyModel:
                 anomaly_model.fit(self.train, allow_model_training="True")
 
     def test_FitForecastingAnomalyModelInput(self):
-
         for anomaly_model in [
             ForecastingAnomalyModel(
                 model=RegressionModel(lags=10), scorer=NormScorer()
@@ -196,7 +189,6 @@ class TestADAnomalyModel:
                 model=RegressionModel(lags=10), scorer=KMeansScorer()
             ),
         ]:
-
             # input 'series' must be a series or Sequence of series
             with pytest.raises(ValueError):
                 anomaly_model.fit([self.train, "str"], allow_model_training=True)
@@ -296,7 +288,6 @@ class TestADAnomalyModel:
             )
 
     def test_ScoreForecastingAnomalyModelInput(self):
-
         for anomaly_model in [
             ForecastingAnomalyModel(
                 model=RegressionModel(lags=10), scorer=NormScorer()
@@ -308,7 +299,6 @@ class TestADAnomalyModel:
                 model=RegressionModel(lags=10), scorer=KMeansScorer()
             ),
         ]:
-
             anomaly_model.fit(self.train, allow_model_training=True)
 
             # number of 'past_covariates' must be the same as the number of Timeseries in 'series'
@@ -347,7 +337,6 @@ class TestADAnomalyModel:
             anomaly_model.score(series=self.train, start=0.9)
 
     def test_ScoreFilteringAnomalyModelInput(self):
-
         for anomaly_model in [
             FilteringAnomalyModel(
                 model=MovingAverageFilter(window=10), scorer=NormScorer()
@@ -360,12 +349,10 @@ class TestADAnomalyModel:
                 model=MovingAverageFilter(window=10), scorer=KMeansScorer()
             ),
         ]:
-
             if anomaly_model.scorers_are_trainable:
                 anomaly_model.fit(self.train)
 
     def test_eval_accuracy(self):
-
         am1 = ForecastingAnomalyModel(
             model=RegressionModel(lags=10), scorer=NormScorer()
         )
@@ -387,7 +374,6 @@ class TestADAnomalyModel:
         am4.fit(self.train)
 
         for am in [am1, am2, am3, am4]:
-
             # if the anomaly_model have scorers that have the parameter univariate_scorer set to True,
             # 'actual_anomalies' must have widths of 1
             if am.univariate_scoring:
@@ -505,7 +491,6 @@ class TestADAnomalyModel:
             )
 
     def test_ForecastingAnomalyModelInput(self):
-
         # model input
         # model input must be of type ForecastingModel
         with pytest.raises(ValueError):
@@ -538,7 +523,6 @@ class TestADAnomalyModel:
             )
 
     def test_FilteringAnomalyModelInput(self):
-
         # model input
         # model input must be of type FilteringModel
         with pytest.raises(ValueError):
@@ -570,7 +554,6 @@ class TestADAnomalyModel:
             )
 
     def test_univariate_ForecastingAnomalyModel(self):
-
         np.random.seed(40)
 
         np_train_slope = np.array(range(0, 100, 1))
@@ -686,7 +669,6 @@ class TestADAnomalyModel:
         np.testing.assert_array_almost_equal(auc_pr_from_scores, true_auc_pr, decimal=1)
 
     def test_univariate_FilteringAnomalyModel(self):
-
         np.random.seed(40)
 
         np_series_train = np.array(range(0, 100, 1)) + np.random.normal(
@@ -811,7 +793,6 @@ class TestADAnomalyModel:
         np.testing.assert_array_almost_equal(auc_pr_from_scores, true_auc_pr, decimal=1)
 
     def test_univariate_covariate_ForecastingAnomalyModel(self):
-
         np.random.seed(40)
 
         day_week = [0, 1, 2, 3, 4, 5, 6]
@@ -937,7 +918,6 @@ class TestADAnomalyModel:
         np.testing.assert_array_almost_equal(auc_pr_from_scores, true_auc_pr, decimal=1)
 
     def test_multivariate__FilteringAnomalyModel(self):
-
         np.random.seed(40)
 
         data_1 = np.random.normal(0, 0.1, 100)
@@ -1164,7 +1144,6 @@ class TestADAnomalyModel:
         np.testing.assert_array_almost_equal(auc_pr_from_scores, true_auc_pr, decimal=1)
 
     def test_multivariate__ForecastingAnomalyModel(self):
-
         np.random.seed(40)
 
         data_sin = np.array([np.sin(x) for x in np.arange(0, 20 * np.pi, 0.2)])
@@ -1392,7 +1371,6 @@ class TestADAnomalyModel:
         np.testing.assert_array_almost_equal(auc_pr_from_scores, true_auc_pr, decimal=1)
 
     def test_show_anomalies(self):
-
         forecasting_anomaly_model = ForecastingAnomalyModel(
             model=RegressionModel(lags=10), scorer=NormScorer()
         )
@@ -1403,7 +1381,6 @@ class TestADAnomalyModel:
         )
 
         for anomaly_model in [forecasting_anomaly_model, filtering_anomaly_model]:
-
             # must input only one series
             with pytest.raises(ValueError):
                 anomaly_model.show_anomalies(series=[self.train, self.train])
@@ -1467,7 +1444,6 @@ class TestADAnomalyModel:
                 anomaly_model.show_anomalies(series=self.train, title=1)
 
     def test_show_anomalies_from_scores(self):
-
         # must input only one series
         with pytest.raises(ValueError):
             show_anomalies_from_scores(series=[self.train, self.train])

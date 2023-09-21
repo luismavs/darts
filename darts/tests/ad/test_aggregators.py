@@ -21,7 +21,6 @@ list_FittableAggregator = [
 
 
 class TestADAggregators:
-
     np.random.seed(42)
 
     # univariate series
@@ -74,7 +73,6 @@ class TestADAggregators:
     )
 
     def test_DetectNonFittableAggregator(self):
-
         aggregator = OrAggregator()
 
         # Check return types
@@ -106,7 +104,6 @@ class TestADAggregators:
         )
 
     def test_eval_accuracy(self):
-
         aggregator = AndAggregator()
 
         # Check return types
@@ -147,9 +144,7 @@ class TestADAggregators:
             )
 
     def test_NonFittableAggregator(self):
-
         for aggregator in list_NonFittableAggregator:
-
             # name must be of type str
             assert type(aggregator.__str__()) == str
 
@@ -192,9 +187,7 @@ class TestADAggregators:
             ), len([self.mts_anomalies1, self.mts_anomalies2])
 
     def test_FittableAggregator(self):
-
         for aggregator in list_FittableAggregator:
-
             # name must be of type str
             assert type(aggregator.__str__()) == str
 
@@ -366,7 +359,6 @@ class TestADAggregators:
             ), len([self.mts_anomalies1, self.mts_anomalies2])
 
     def test_OrAggregator(self):
-
         aggregator = OrAggregator()
 
         # simple case
@@ -548,7 +540,6 @@ class TestADAggregators:
         )
 
     def test_AndAggregator(self):
-
         aggregator = AndAggregator()
 
         # simple case
@@ -730,7 +721,6 @@ class TestADAggregators:
         )
 
     def test_EnsembleSklearn(self):
-
         # Need to input an EnsembleSklearn model
         with pytest.raises(ValueError):
             EnsembleSklearnAggregator(model=MovingAverageFilter(window=10))

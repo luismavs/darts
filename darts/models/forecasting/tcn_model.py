@@ -143,7 +143,6 @@ class _TCNModule(PLPastCovariatesModule):
         dropout: float,
         **kwargs
     ):
-
         """PyTorch module implementing a dilated TCN module used in `TCNModel`.
 
 
@@ -269,7 +268,6 @@ class TCNModel(PastCovariatesTorchModel):
         dropout: float = 0.2,
         **kwargs
     ):
-
         """Temporal Convolutional Network Model (TCN).
 
         This is an implementation of a dilated TCN used for forecasting, inspired from [1]_.
@@ -523,7 +521,6 @@ class TCNModel(PastCovariatesTorchModel):
         future_covariates: Optional[Sequence[TimeSeries]],
         max_samples_per_ts: Optional[int],
     ) -> PastCovariatesShiftedDataset:
-
         return PastCovariatesShiftedDataset(
             target_series=target,
             covariates=past_covariates,
